@@ -1,0 +1,22 @@
+apiVersion: radix.equinor.com/v1
+kind: RadixApplication
+metadata:
+  name: radix-dotnet-v3
+spec:
+  environments:
+    - name: development
+      authorization:
+      - role: RadixAppAdmin
+        groups:
+        - "g_radix_platform_user"
+    - name: production
+      authorization:
+      - role: RadixAppAdmin
+        groups:
+        - "g_radix_platform_user"
+  components:
+    - name: comp1
+      src: "."
+      ports:
+        - 8080
+      public: true
