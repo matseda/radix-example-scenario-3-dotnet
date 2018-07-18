@@ -1,7 +1,7 @@
 apiVersion: radix.equinor.com/v1
 kind: RadixApplication
 metadata:
-  name: radix-dotnet-v3
+  name: radix-example-scenario-3-dotnet
 spec:
   environments:
     - name: development

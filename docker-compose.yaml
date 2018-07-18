@@ -7,14 +7,5 @@ services:
       dockerfile: Dockerfile
     expose:
       - "5000"
-    # ports: 
-    #   - 8080:80
-    
-  proxy:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
-    ports:
-      - 80:80
-    links:
-      - radix-dotnet-v3
+    ports: 
+      - 8080:5000
