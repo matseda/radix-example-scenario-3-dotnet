@@ -39,3 +39,10 @@ Run `docker-compose down` to cleanup the Docker state.
 
 The radix platform uses `radixconfig.yaml`, **not** `docker-compose.yaml`.
 For deployment please follow the getting started on the [Omnia radix wiki](https://radix-wiki.azurewebsites.net/doku.php/appdeveloper/gettingstarted).
+
+## Built With
+* [.NET](https://www.microsoft.com/net)
+* [Docker](https://docs.docker.com/) - Containerizing the app
+
+## Authors
+* **Mats Davidsen**
