@@ -13,6 +13,7 @@ namespace radix_dotnet_v3.Pages
         public string Name { get; set; }
         public string Price { get; set; }
 
+        //URL's used to access the API
         private const string baseURL = "https://api.coinmarketcap.com/v2/ticker/";
         private const string listURL = "https://api.coinmarketcap.com/v2/listings/";
         int[] idList;
@@ -23,6 +24,7 @@ namespace radix_dotnet_v3.Pages
             DownloadCryptoInfo();
         }
 
+        //Downloads a list of all crypto currencies and saves the id's  
         public void DownloadIdList()
         {
             HttpClient client = new HttpClient();
@@ -35,29 +37,26 @@ namespace radix_dotnet_v3.Pages
                 string responseString = responseContent.ReadAsStringAsync().Result;
                 dynamic obj = JsonConvert.DeserializeObject<dynamic>(responseString);
                 int objLenght = obj.data.Count;
-                Console.WriteLine("l: " + objLenght);
 
                 //Save the id's of the currencies in an array.
                 idList = new int[objLenght];
                 for(int i=0; i<objLenght; i++){
                     idList[i] = obj.data[i].id;
                 }
-                Console.WriteLine(idList);
             }
         }
 
+        //Downloads data for a currency based on an random id from the list of id's 
         public void DownloadCryptoInfo()
         {
             HttpClient client = new HttpClient();
             Random r = new Random();
 
-            int id = idList[r.Next(1, 100)]; 
+            //Get a random id from the list and uses this in the URL which retrieves data about the currency with that id
+            int id = idList[r.Next(0, idList.Length-1)]; 
             string URL = baseURL + id + "/";
             var response = client.GetAsync(URL).Result;
-            bool validID = false;
 
-            Console.WriteLine(response);
-            Console.WriteLine(URL);
 
             //Not all of the ID's are valid 
             if (response.IsSuccessStatusCode)
@@ -72,7 +71,6 @@ namespace radix_dotnet_v3.Pages
                 //Set the name and price which will be displayed in the cshtml
                 Name = obj.data.name;
                 Price = obj.data.quotes.USD.price;
-                validID = true;
             }
         }
     }

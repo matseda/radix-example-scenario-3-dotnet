@@ -18,5 +18,5 @@ spec:
     - name: comp1
       src: "."
       ports:
-        - 8080
+        - 5000
       public: true

@@ -8,4 +8,4 @@ services:
     expose:
       - "5000"
     ports: 
-      - 8080:5000
+      - 80:5000
